@@ -1,16 +1,17 @@
 {
   "name": "vue-slide-bar",
   "version": "1.0.0",
-  "description": "Vue Component Slider Bar",
+  "description": "Very Simple Vue Component Slider Bar",
   "author": "biig_pongsatorn <biig_pongsatorn@hotmail.com>",
   "private": true,
-  "main": "dist/vue-slide-bar.min.js",
+  "main": "dist/vue-slide-bar.cjs.js",
+  "module": "dist/vue-slide-bar.es.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "build:bili": "bili ./src/components/VueSlideBar.vue --plugin vue --format umd-min --module-name VueSlideBar"
+    "build:bili": "bili src/components/VueSlideBar.vue"
   },
   "dependencies": {
     "vue": "^2.5.2"
