@@ -12,7 +12,8 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "rm -rf ./dist && bili src/components/VueSlideBar.vue"
+    "build": "rm -rf ./dist && bili src/components/VueSlideBar.vue",
+    "build:example": "node build/build.js"
   },
   "dependencies": {
     "vue": "^2.5.2"
