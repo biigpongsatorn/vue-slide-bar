@@ -1,8 +1,6 @@
 module.exports = {
   banner: true,
-  format: ['umd', 'umd-min', 'cjs', 'es'],
+  format: ['umd-min'],
   plugins: ['vue'],
-  vue: {
-    css: `dist/vue-slide-bar.min.css`
-  }
+  extract: false
 }
