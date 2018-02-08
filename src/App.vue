@@ -1,6 +1,33 @@
 <template>
   <div id="app">
-    <VueSlideBar v-model="value"/>
+    <VueSlideBar v-model="value1"/>
+    <h2>Value: {{value1}}</h2>
+
+    <VueSlideBar v-model="slider.value" :data="slider.data" :range="slider.range" :processStyle="{ backgroundColor: '#d8d8d8' }" @callbackRange="callbackRange">
+      <template slot="tooltip" slot-scope="tooltip">
+        <img src="static/images/rectangle-slider.svg">
+      </template>
+    </VueSlideBar>
+    <h2>Value: {{slider.value}}</h2>
+    <h2>Label: {{rangeValue.label}}</h2>
+
+    <VueSlideBar 
+      v-model="value2"
+      :min="1"
+      :max="10"
+      :processStyle="slider.processStyle"
+      :lineHeight="slider.lineHeight"
+      :tooltipStyles="{ backgroundColor: 'red', borderColor: 'red' }">
+    </VueSlideBar>
+    <h2>Value: {{value2}}</h2>
+    
+    <VueSlideBar v-model="loading" :showTooltip="false"/>
+    <h2>
+      <button type="button" name="button" @click="startLoad()">
+        Click to start load
+      </button>
+    </h2>
+    <h2>Value: {{loading}}</h2>
   </div>
 </template>
 
@@ -11,7 +38,68 @@ export default {
   name: 'App',
   data () {
     return {
-      value: 20
+      value1: 50,
+      loader: null,
+      rangeValue: {},
+      value2: 8,
+      loading: 0,
+      switchReassign: false,
+      slider: {
+        value: 45,
+        data: [
+          15,
+          30,
+          45,
+          60,
+          75,
+          90,
+          120
+        ],
+        range: [
+          {
+            label: '15 mins'
+          },
+          {
+            label: '30 mins',
+            isHide: true
+          },
+          {
+            label: '45 mins'
+          },
+          {
+            label: '1 hr',
+            isHide: true
+          },
+          {
+            label: '1 hr 15 mins'
+          },
+          {
+            label: '1 hr 30 mins',
+            isHide: true
+          },
+          {
+            label: '2 hrs'
+          }
+        ],
+        lineHeight: 10,
+        processStyle: {
+          backgroundColor: 'red'
+        }
+      }
+    }
+  },
+  methods: {
+    callbackRange (val) {
+      this.rangeValue = val
+    },
+    startLoad () {
+      this.loader = setInterval(() => {
+        this.loading++
+        if (this.loading === 100) {
+          console.log('clear', this.loading)
+          clearInterval(this.loader)
+        }
+      }, 100)
     }
   },
   components: {
@@ -20,5 +108,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  #app {
+    margin: 20px;
+  }
 </style>
