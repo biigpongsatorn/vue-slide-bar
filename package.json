@@ -5,13 +5,14 @@
   "author": "biig_pongsatorn <biig_pongsatorn@hotmail.com>",
   "private": true,
   "main": "dist/vue-slide-bar.min.js",
-  "module": "dist/vue-slide-bar.es.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js",
-    "build:bili": "bili src/components/VueSlideBar.vue"
+    "build": "rm -rf ./dist && bili src/components/VueSlideBar.vue"
   },
   "dependencies": {
     "vue": "^2.5.2"
@@ -51,6 +52,7 @@
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
     "rimraf": "^2.6.0",
+    "rollup-plugin-postcss": "^1.2.8",
     "rollup-plugin-vue": "^3.0.0",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
