@@ -1,4 +1,4 @@
-# 🎢  Vye Slide Bar
+# 🎢  Vue Slide Bar
 
 > Vue Component Slider Bar
 
