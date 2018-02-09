@@ -231,16 +231,16 @@ export default {
 ### Props
 | Props       | Type          | Default  | Description  |
 | ----------- |:--------------| ---------|--------------|
-| min         | Number        | 0        | the minimum value   |
-| max         | Number        | 100      | the maximum value   |
-| process-style*    | Object | null  | The style of the process bar. |
-| tooltip-style*    | Object[,Array(in range model), Function<Value, Index>] | null  | The style of the tooltip. |
-| value       | Number,Array  | 0        | initial value (if the value for the array open range model) |
-| data        | Array         | null     | the custom data. |
-| showTooltip      | Boolean       | true     | display of tooltip |
-| iconWidth       | Number | 20 | width of the icon |
-| lineHeight      | Number | 5        | height of the line |
-| speed       | Number        | 0.5      | transition time |
+| min         | Number        | 0        | Minimum value   |
+| max         | Number        | 100      | Maximum value   |
+| process-style*    | Object | null  | Process bar style. |
+| tooltip-style*    | Object[,Array(in range model), Function<Value, Index>] | null  | Tooltip style. |
+| value       | Number,Array  | 0        | Initial value (v-model)|
+| data        | Array         | null     | Custom data. |
+| showTooltip      | Boolean       | true     | Flag display tooltip |
+| iconWidth       | Number | 20 | Icon width |
+| lineHeight      | Number | 5        | Line height |
+| speed       | Number        | 0.5      | Transition time |
 
 ### Events
 | Name          | Type          | Description  |

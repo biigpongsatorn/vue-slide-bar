@@ -2,7 +2,7 @@
   <div id="app">
     <VueSlideBar v-model="value1"/>
     <h2>Value: {{value1}}</h2>
-
+    <br><br>
     <VueSlideBar v-model="slider.value" :data="slider.data" :range="slider.range" :processStyle="{ backgroundColor: '#d8d8d8' }" @callbackRange="callbackRange">
       <template slot="tooltip" slot-scope="tooltip">
         <img src="static/images/rectangle-slider.svg">
@@ -10,8 +10,8 @@
     </VueSlideBar>
     <h2>Value: {{slider.value}}</h2>
     <h2>Label: {{rangeValue.label}}</h2>
-
-    <VueSlideBar 
+    <br><br>
+    <VueSlideBar
       v-model="value2"
       :min="1"
       :max="10"
@@ -20,14 +20,14 @@
       :tooltipStyles="{ backgroundColor: 'red', borderColor: 'red' }">
     </VueSlideBar>
     <h2>Value: {{value2}}</h2>
-    
+    <br><br>
     <VueSlideBar v-model="loading" :showTooltip="false"/>
     <h2>
       <button type="button" name="button" @click="startLoad()">
         Click to start load
       </button>
     </h2>
-    <h2>Value: {{loading}}</h2>
+    <h2>Loading: {{loading}}%</h2>
   </div>
 </template>
 
