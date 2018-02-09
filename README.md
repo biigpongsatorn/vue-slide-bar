@@ -1,10 +1,33 @@
 # 🎢  Vue Slide Bar
 
-> Vue Component Slider Bar
+> Vue Slider Bar Component 
 
 ## Install
 ```sh
 npm install vue-slide-bar --save
+```
+```html
+<template>
+  <div>
+    <VueSlideBar v-model="value"/>
+    <h2>Value: {{value}}</h2>
+  </div>
+</template>
+
+<script>
+import VueSlideBar from 'vue-slide-bar'
+
+export default {
+  data () {
+    return {
+      value: 50
+    }
+  },
+  components: {
+    VueSlideBar
+  }
+}
+</script>
 ```
 
 ## Run example
@@ -30,7 +53,7 @@ npm run dev
 </template>
 
 <script>
-import VueSlideBar from './components/VueSlideBar'
+import VueSlideBar from 'vue-slide-bar'
 
 export default {
   data () {
@@ -62,7 +85,7 @@ export default {
 </template>
 
 <script>
-import VueSlideBar from './components/VueSlideBar'
+import VueSlideBar from 'vue-slide-bar'
 
 export default {
   data () {
@@ -139,7 +162,7 @@ export default {
 </template>
 
 <script>
-import VueSlideBar from './components/VueSlideBar'
+import VueSlideBar from 'vue-slide-bar'
 
 export default {
   data () {
@@ -177,7 +200,7 @@ export default {
 </template>
 
 <script>
-import VueSlideBar from './components/VueSlideBar'
+import VueSlideBar from 'vue-slide-bar'
 
 export default {
   data () {
@@ -219,9 +242,6 @@ export default {
 | lineHeight      | Number | 5        | height of the line |
 | speed       | Number        | 0.5      | transition time |
 
-| direction   | String        | horizontal | set the direction of the component, optional value: ['horizontal', 'vertical'] |
-| event-type  | String        | auto   | the event type, optional value: ['auto', 'none'] |
-
 ### Events
 | Name          | Type          | Description  |
 | --------------|:--------------|--------------|
@@ -232,7 +252,7 @@ export default {
 | --------------|--------------|
 | tooltip       | Customize the tooltip slot.|
 
-[#](https://vuejs.org/v2/guide/components.html#Scoped-Slots) When using the template element as a slot, can add special properties `scope` or `slot-scope` to get the value.
+[#](https://vuejs.org/v2/guide/components.html#Scoped-Slots) When using the template element as a slot, can add special properties `slot-scope` to get the value.
 
 
 ## License
