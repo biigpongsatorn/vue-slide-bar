@@ -1,42 +1,10 @@
 # 🎢  Vue Slide Bar
 
-> Vue Slider Bar Component 
+> Vue Slider Bar Component
 
 ## Install
 ```sh
 npm install vue-slide-bar --save
-```
-```html
-<template>
-  <div>
-    <VueSlideBar v-model="value"/>
-    <h2>Value: {{value}}</h2>
-  </div>
-</template>
-
-<script>
-import VueSlideBar from 'vue-slide-bar'
-
-export default {
-  data () {
-    return {
-      value: 50
-    }
-  },
-  components: {
-    VueSlideBar
-  }
-}
-</script>
-```
-
-## Run example
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:9000
-npm run dev
 ```
 
 # Usage
@@ -47,8 +15,10 @@ npm run dev
 ```html
 <template>
   <div>
-    <VueSlideBar v-model="value"/>
-    <h2>Value: {{value}}</h2>
+    <VueSlideBar v-model="value1"/>
+    <h2>Value: {{value1}}</h2>
+    <button type="button" name="button" @click="value1 = 90">+</button>
+    <button type="button" name="button" @click="value1 = 20">-</button>
   </div>
 </template>
 
@@ -74,7 +44,12 @@ export default {
 ```html
 <template>
   <div>
-    <VueSlideBar v-model="slider.value" :data="slider.data" :range="slider.range" :processStyle="{ backgroundColor: '#d8d8d8' }" @callbackRange="callbackRange">
+    <VueSlideBar
+      v-model="slider.value"
+      :data="slider.data"
+      :range="slider.range"
+      :processStyle="{ backgroundColor: '#d8d8d8' }"
+      @callbackRange="callbackRange">
       <template slot="tooltip" slot-scope="tooltip">
         <img src="static/images/rectangle-slider.svg">
       </template>
@@ -149,7 +124,7 @@ export default {
 ```html
 <template>
   <div>
-    <VueSlideBar 
+    <V<VueSlideBar
       v-model="value2"
       :min="1"
       :max="10"
@@ -189,13 +164,16 @@ export default {
 ```html
 <template>
   <div>
-    <VueSlideBar v-model="loading" :showTooltip="false"/>
-    <h2>
-      <button type="button" name="button" @click="startLoad()">
-        Click to start load
-      </button>
-    </h2>
-    <h2>Value: {{loading}}</h2>
+    <VueSlideBar
+      v-model="loading"
+      :showTooltip="false"
+      :lineHeight="20"
+      :isDisabled="true"/>
+    <br>
+    <button type="button" name="button" @click="startLoad()">
+      Click to start load
+    </button>
+    <h2>Loading: {{loading}}%</h2>
   </div>
 </template>
 
@@ -205,7 +183,8 @@ import VueSlideBar from 'vue-slide-bar'
 export default {
   data () {
     return {
-      loading: 0,
+      loader: null,
+      loading: 0
     }
   },
   methods: {
@@ -237,9 +216,10 @@ export default {
 | tooltip-style*    | Object[,Array(in range model), Function<Value, Index>] | null  | Tooltip style. |
 | value       | Number,Array  | 0        | Initial value (v-model)|
 | data        | Array         | null     | Custom data. |
-| showTooltip      | Boolean       | true     | Flag display tooltip |
-| iconWidth       | Number | 20 | Icon width |
-| lineHeight      | Number | 5        | Line height |
+| is-disabled       | Boolean        | false      | Flag for disable slider bar |
+| show-tooltip      | Boolean       | true     | Flag display tooltip |
+| icon-width       | Number | 20 | Icon width |
+| line-height      | Number | 5        | Line height |
 | speed       | Number        | 0.5      | Transition time |
 
 ### Events
@@ -254,6 +234,14 @@ export default {
 
 [#](https://vuejs.org/v2/guide/components.html#Scoped-Slots) When using the template element as a slot, can add special properties `slot-scope` to get the value.
 
+## Run example
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:9000
+npm run dev
+```
 
 ## License
 

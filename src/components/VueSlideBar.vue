@@ -1,5 +1,9 @@
 <template>
-  <div ref="wrap" class="vue-slide-bar-component vue-slide-bar-horizontal" style="width: auto;padding: 0px 10px;" @click="wrapClick">
+  <div
+    ref="wrap"
+    class="vue-slide-bar-component vue-slide-bar-horizontal"
+    :style="calculateMinHeight"
+    @click="wrapClick">
     <div ref="elem" class="vue-slide-bar" :style="{height: `${lineHeight}px`}">
       <template>
         <div ref="dot"
@@ -76,6 +80,10 @@ export default {
     showTooltip: {
       type: Boolean,
       default: true
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false
     },
     tooltipStyles: Object,
     processStyle: Object
@@ -156,11 +164,15 @@ export default {
     },
     valueLimit () {
       return this.isRange ? [[this.minimum, this.currentValue[1]], [this.currentValue[0], this.maximum]] : [this.minimum, this.maximum]
+    },
+    calculateMinHeight () {
+      return this.range ? { minHeight: '100px' } : {}
     }
   },
   watch: {
     value (val) {
-      this.flag || this.setValue(val, true)
+      if (this.flag) this.setValue(val, true)
+      else this.setValue(val, true, this.speed)
     },
     max (val) {
       if (val < this.min) {
@@ -201,6 +213,7 @@ export default {
       return e.clientX - this.offset
     },
     wrapClick (e) {
+      if (this.isDisabled) return false
       let pos = this.getPos(e)
       if (this.isRange) {
         this.currentSlider = pos > ((this.position[1] - this.position[0]) / 2 + this.position[0]) ? 1 : 0
@@ -300,52 +313,24 @@ export default {
       this.$nextTick(() => this.setPosition(speed))
     },
     setPosition (speed) {
-      this.flag || this.setTransitionTime(speed === undefined ? this.speed : speed)
-      if (this.isRange) {
-        this.currentSlider = 0
-        this.setTransform(this.position[this.currentSlider])
-        this.currentSlider = 1
-        this.setTransform(this.position[this.currentSlider])
-      } else {
-        this.setTransform(this.position)
-      }
-      this.flag || this.setTransitionTime(0)
+      if (!this.flag) this.setTransitionTime(speed === undefined ? this.speed : speed)
+      else this.setTransitionTime(0)
+      this.setTransform(this.position)
     },
     setTransform (val) {
       let value = val - 8
       let translateValue = `translateX(${value}px)`
-      let processSize = `${this.currentSlider === 0 ? this.position[1] - val : val - this.position[0]}px`
-      let processPos = `${this.currentSlider === 0 ? val : this.position[0]}px`
-      if (this.isRange) {
-        this.slider[this.currentSlider].style.transform = translateValue
-        this.slider[this.currentSlider].style.WebkitTransform = translateValue
-        this.slider[this.currentSlider].style.msTransform = translateValue
-        this.$refs.process.style.width = processSize
-        this.$refs.process.style['left'] = processPos
-      } else {
-        this.slider.style.transform = translateValue
-        this.slider.style.WebkitTransform = translateValue
-        this.slider.style.msTransform = translateValue
-        this.$refs.process.style.width = `${val}px`
-        this.$refs.process.style['left'] = 0
-      }
+      this.slider.style.transform = translateValue
+      this.slider.style.WebkitTransform = translateValue
+      this.slider.style.msTransform = translateValue
+      this.$refs.process.style.width = `${val}px`
+      this.$refs.process.style['left'] = 0
     },
     setTransitionTime (time) {
-      // In order to avoid browser merge style and modify together
-      // time || this.$refs.process.offsetWidth
-      if (this.isRange) {
-        for (let i = 0; i < this.slider.length; i++) {
-          this.slider[i].style.transitionDuration = `${time}s`
-          this.slider[i].style.WebkitTransitionDuration = `${time}s`
-        }
-        this.$refs.process.style.transitionDuration = `${time}s`
-        this.$refs.process.style.WebkitTransitionDuration = `${time}s`
-      } else {
-        this.slider.style.transitionDuration = `${time}s`
-        this.slider.style.WebkitTransitionDuration = `${time}s`
-        this.$refs.process.style.transitionDuration = `${time}s`
-        this.$refs.process.style.WebkitTransitionDuration = `${time}s`
-      }
+      this.slider.style.transitionDuration = `${time}s`
+      this.slider.style.WebkitTransitionDuration = `${time}s`
+      this.$refs.process.style.transitionDuration = `${time}s`
+      this.$refs.process.style.WebkitTransitionDuration = `${time}s`
     },
     limitValue (val) {
       if (this.data) {
