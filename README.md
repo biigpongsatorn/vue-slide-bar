@@ -1,11 +1,11 @@
-# 🎢  Vue Slide Bar
-
-> Very Simple Vue Slider Bar Component
-
 <p align="center">
 <a href="https://npmjs.com/package/vue-slide-bar"><img src="https://img.shields.io/npm/v/vue-slide-bar.svg?style=flat" alt="NPM version"></a>
 <a href="https://npmjs.com/package/vue-slide-bar"><img src="https://img.shields.io/npm/dm/vue-slide-bar.svg?style=flat" alt="NPM downloads"></a>
 </p>
+
+# 🎢  Vue Slide Bar
+
+> Very Simple Vue Slider Bar Component
 
 ## Install
 ```sh
