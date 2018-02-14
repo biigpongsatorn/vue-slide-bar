@@ -244,7 +244,7 @@ export default {
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:9000
+# Your application is running here: http://localhost:8080
 npm run dev
 ```
 
