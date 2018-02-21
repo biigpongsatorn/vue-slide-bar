@@ -21,9 +21,13 @@ npm install vue-slide-bar --save
 <template>
   <div>
     <VueSlideBar v-model="value1"/>
-    <h2>Value: {{value1}}</h2>
-    <button type="button" name="button" @click="value1 = 90">+</button>
-    <button type="button" name="button" @click="value1 = 20">-</button>
+    <h2>Value: {{ value }}</h2>
+    <button type="button" name="button" @click="value = 90">
+      +
+    </button>
+    <button type="button" name="button" @click="value = 20">
+      -
+    </button>
   </div>
 </template>
 
