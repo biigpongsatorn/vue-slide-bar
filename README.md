@@ -255,3 +255,6 @@ npm run dev
 ## License
 
 [MIT](LICENSE)
+
+<br><br><br>
+Developed with ❤️ and ☕️
