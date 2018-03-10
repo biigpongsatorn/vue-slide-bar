@@ -256,5 +256,4 @@ npm run dev
 
 [MIT](LICENSE)
 
-<br><br><br>
 Developed with ❤️ and ☕️
