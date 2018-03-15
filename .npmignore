@@ -1,0 +1,14 @@
+build/
+config/
+node_modules/
+src/
+static/
+.babelrc
+.editorconfig
+.eslintignore
+.eslintrc.js
+.gitignore
+.postcssrc.js
+bili.config.js
+index.html
+yarn.lock
