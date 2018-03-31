@@ -133,7 +133,7 @@ export default {
 ```html
 <template>
   <div>
-    <V<VueSlideBar
+    <VueSlideBar
       v-model="value2"
       :min="1"
       :max="10"
