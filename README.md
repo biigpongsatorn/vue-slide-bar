@@ -57,6 +57,7 @@ export default {
       v-model="slider.value"
       :data="slider.data"
       :range="slider.range"
+      :labelStyles="{ color: '#4a4a4a', backgroundColor: '#4a4a4a' }"
       :processStyle="{ backgroundColor: '#d8d8d8' }"
       @callbackRange="callbackRange">
       <template slot="tooltip" slot-scope="tooltip">
@@ -222,7 +223,8 @@ export default {
 | min         | Number        | 0        | Minimum value   |
 | max         | Number        | 100      | Maximum value   |
 | process-style*    | Object | null  | Process bar style. |
-| tooltip-style*    | Object[,Array(in range model), Function<Value, Index>] | null  | Tooltip style. |
+| tooltip-style*    | Object | null  | Tooltip style. |
+| label-style*    | Object | null  | Label style. |
 | value       | Number,Array  | 0        | Initial value (v-model)|
 | data        | Array         | null     | Custom data. |
 | is-disabled       | Boolean        | false      | Flag for disable slider bar |

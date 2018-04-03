@@ -10,6 +10,7 @@
       v-model="slider.value"
       :data="slider.data"
       :range="slider.range"
+      :labelStyles="{ color: '#4a4a4a', backgroundColor: '#4a4a4a' }"
       :processStyle="{ backgroundColor: '#d8d8d8' }"
       @callbackRange="callbackRange">
       <template slot="tooltip" slot-scope="tooltip">
