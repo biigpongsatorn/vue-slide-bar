@@ -21,7 +21,7 @@
       <div ref="process" class="vue-slide-bar-process" :style="processStyle"></div>
     </div>
     <div v-if="range" class="vue-slide-bar-range">
-      <div v-for="(r, index) in range" :key="index" class="vue-slide-bar-separate">
+      <div v-for="(r, index) in range" :key="index" class="vue-slide-bar-separate" :style="labelStyles">
         <span v-if="!r.isHide" class="vue-slide-bar-separate-text">
           {{ r.label }}
         </span>
@@ -86,6 +86,7 @@ export default {
       default: false
     },
     tooltipStyles: Object,
+    labelStyles: Object,
     processStyle: Object
   },
   computed: {
@@ -497,7 +498,6 @@ export default {
   font-family: Arial;
   font-size: 12px;
   text-align: center;
-  color: #4a4a4a;
   position: absolute;
   white-space: nowrap;
   transform: translate(-50%, 0);
