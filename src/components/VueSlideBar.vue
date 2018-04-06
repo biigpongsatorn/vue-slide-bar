@@ -21,7 +21,7 @@
       <div ref="process" class="vue-slide-bar-process" :style="processStyle"></div>
     </div>
     <div v-if="range" class="vue-slide-bar-range">
-      <div v-for="(r, index) in range" :key="index" class="vue-slide-bar-separate" :style="labelStyles">
+      <div v-for="(r, index) in range" :key="index" class="vue-slide-bar-separate" :style="dataLabelStyles">
         <span v-if="!r.isHide" class="vue-slide-bar-separate-text">
           {{ r.label }}
         </span>
@@ -41,7 +41,13 @@ export default {
       isComponentExists: true,
       interval: 1,
       lazy: false,
-      realTime: false
+      realTime: false,
+      dataLabelStyles: {
+        'color': '#4a4a4a',
+        'font-family': 'Arial, sans-serif',
+        'font-size': '12px',
+        ...this.$props.labelStyles
+      }
     }
   },
   props: {
@@ -448,7 +454,7 @@ export default {
   top: -16px;
 }
 .vue-slide-bar-tooltip-wrap {
-  display: none;
+  /* display: none; */
   position: absolute;
   z-index: 9;
   width: 100%;
@@ -495,8 +501,6 @@ export default {
   height: 5px;
 }
 .vue-slide-bar-separate-text {
-  font-family: Arial;
-  font-size: 12px;
   text-align: center;
   position: absolute;
   white-space: nowrap;
