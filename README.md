@@ -9,7 +9,7 @@
 
 
 # Example 👁
-## [vue-slide-bar-demo-page](https://vue-slide-bar-demo-page.netlify.com/)
+### [vue-slide-bar-demo-page](https://vue-slide-bar-demo-page.netlify.com/)
 
 
 # Install
