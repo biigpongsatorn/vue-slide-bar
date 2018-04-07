@@ -1,6 +1,6 @@
 {
   "name": "vue-slide-bar",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Very Simple Vue Slider Bar Component",
   "author": "Pongsatorn Nitithammawoot <biig_pongsatorn@hotmail.com>",
   "main": "dist/vue-slide-bar.min.js",

@@ -7,6 +7,10 @@
 
 > Very Simple Vue Slider Bar Component
 
+# Example
+
+## [vue-slide-bar-demo-page](https://vue-slide-bar-demo-page.netlify.com/)
+
 ## Install
 ```sh
 npm install vue-slide-bar --save
