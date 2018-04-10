@@ -46,6 +46,10 @@
 </template>
 
 <script>
+// For test built file
+// import VueSlideBar from '../dist/vue-slide-bar.min.js'
+
+// For test local
 import VueSlideBar from './components/VueSlideBar'
 
 export default {
