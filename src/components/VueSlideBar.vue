@@ -450,6 +450,7 @@ export default {
   width: 2px;
   background-color: #9e9e9e;
   height: 5px;
+  cursor: pointer;
 }
 .vue-slide-bar-separate-text {
   text-align: center;
