@@ -72,7 +72,7 @@ export default {
       default: 20
     },
     value: {
-      type: [String, Number, Array],
+      type: [String, Number],
       default: 0
     },
     min: {
@@ -96,29 +96,18 @@ export default {
     processStyle: Object
   },
   computed: {
-    isRange () {
-      return Array.isArray(this.value)
-    },
     slider () {
-      return this.isRange ? [this.$refs.dot0, this.$refs.dot1] : this.$refs.dot
+      return this.$refs.dot
     },
     val: {
       get () {
-        return this.data ? (this.isRange ? [this.data[this.currentValue[0]], this.data[this.currentValue[1]]] : this.data[this.currentValue]) : this.currentValue
+        return this.data ? this.data[this.currentValue] : this.currentValue
       },
       set (val) {
         if (this.data) {
-          if (this.isRange) {
-            let index0 = this.data.indexOf(val[0])
-            let index1 = this.data.indexOf(val[1])
-            if (index0 > -1 && index1 > -1) {
-              this.currentValue = [index0, index1]
-            }
-          } else {
-            let index = this.data.indexOf(val)
-            if (index > -1) {
-              this.currentValue = index
-            }
+          let index = this.data.indexOf(val)
+          if (index > -1) {
+            this.currentValue = index
           }
         } else {
           this.currentValue = val
@@ -126,18 +115,10 @@ export default {
       }
     },
     currentIndex () {
-      if (this.isRange) {
-        return this.data ? this.currentValue : [(this.currentValue[0] - this.minimum) / this.spacing, (this.currentValue[1] - this.minimum) / this.spacing]
-      } else {
-        return (this.currentValue - this.minimum) / this.spacing
-      }
+      return (this.currentValue - this.minimum) / this.spacing
     },
     indexRange () {
-      if (this.isRange) {
-        return this.currentIndex
-      } else {
-        return [0, this.currentIndex]
-      }
+      return [0, this.currentIndex]
     },
     minimum () {
       return this.data ? 0 : this.min
@@ -164,13 +145,13 @@ export default {
       return this.size / this.total
     },
     position () {
-      return this.isRange ? [(this.currentValue[0] - this.minimum) / this.spacing * this.gap, (this.currentValue[1] - this.minimum) / this.spacing * this.gap] : ((this.currentValue - this.minimum) / this.spacing * this.gap)
+      return ((this.currentValue - this.minimum) / this.spacing * this.gap)
     },
     limit () {
-      return this.isRange ? [[0, this.position[1]], [this.position[0], this.size]] : [0, this.size]
+      return [0, this.size]
     },
     valueLimit () {
-      return this.isRange ? [[this.minimum, this.currentValue[1]], [this.currentValue[0], this.maximum]] : [this.minimum, this.maximum]
+      return [this.minimum, this.maximum]
     },
     calculateMinHeight () {
       return this.range ? { minHeight: '100px' } : {}
@@ -222,15 +203,9 @@ export default {
     wrapClick (e) {
       if (this.isDisabled) return false
       let pos = this.getPos(e)
-      if (this.isRange) {
-        this.currentSlider = pos > ((this.position[1] - this.position[0]) / 2 + this.position[0]) ? 1 : 0
-      }
       this.setValueOnPos(pos)
     },
     moveStart (e, index) {
-      if (this.isRange) {
-        this.currentSlider = index
-      }
       this.flag = true
       this.$emit('drag-start', this)
     },
@@ -253,8 +228,8 @@ export default {
       this.setPosition()
     },
     setValueOnPos (pos, isDrag) {
-      let range = this.isRange ? this.limit[this.currentSlider] : this.limit
-      let valueRange = this.isRange ? this.valueLimit[this.currentSlider] : this.valueLimit
+      let range = this.limit
+      let valueRange = this.valueLimit
       if (pos >= range[0] && pos <= range[1]) {
         this.setTransform(pos)
         let v = (Math.round(pos / this.gap) * (this.spacing * this.multiple) + (this.minimum * this.multiple)) / this.multiple
@@ -279,14 +254,7 @@ export default {
     },
     setCurrentValue (val, bool) {
       if (val < this.minimum || val > this.maximum) return false
-      if (this.isRange) {
-        if (this.isDiff(this.currentValue[this.currentSlider], val)) {
-          this.currentValue.splice(this.currentSlider, 1, val)
-          if (!this.lazy || !this.flag) {
-            this.syncValue()
-          }
-        }
-      } else if (this.isDiff(this.currentValue, val)) {
+      if (this.isDiff(this.currentValue, val)) {
         this.currentValue = val
         if (!this.lazy || !this.flag) {
           this.syncValue()
@@ -295,26 +263,13 @@ export default {
       bool || this.setPosition()
     },
     setIndex (val) {
-      if (Array.isArray(val) && this.isRange) {
-        let value
-        if (this.data) {
-          value = [this.data[val[0]], this.data[val[1]]]
-        } else {
-          value = [this.spacing * val[0] + this.minimum, this.spacing * val[1] + this.minimum]
-        }
-        this.setValue(value)
-      } else {
-        val = this.spacing * val + this.minimum
-        if (this.isRange) {
-          this.currentSlider = val > ((this.currentValue[1] - this.currentValue[0]) / 2 + this.currentValue[0]) ? 1 : 0
-        }
-        this.setCurrentValue(val)
-      }
+      val = this.spacing * val + this.minimum
+      this.setCurrentValue(val)
     },
     setValue (val, noCb, speed) {
       if (this.isDiff(this.val, val)) {
         let resetVal = this.limitValue(val)
-        this.val = this.isRange ? resetVal.concat() : resetVal
+        this.val = resetVal
         this.syncValue(noCb)
       }
       this.$nextTick(() => this.setPosition(speed))
@@ -353,14 +308,10 @@ export default {
         }
         return v
       }
-      if (this.isRange) {
-        return val.map((v) => inRange(v))
-      } else {
-        return inRange(val)
-      }
+      return inRange(val)
     },
     syncValue (noCb) {
-      let val = this.isRange ? this.val.concat() : this.val
+      let val = this.val
       if (this.range) {
         this.$emit('callbackRange', this.range[this.currentIndex])
       }
