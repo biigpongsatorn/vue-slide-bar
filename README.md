@@ -231,7 +231,7 @@ export default {
 | process-style*    | Object | null  | Process bar style. |
 | tooltip-style*    | Object | null  | Tooltip style. |
 | label-style*    | Object | null  | Label style. |
-| value       | Number,Array  | 0        | Initial value (v-model)|
+| value       | Number,String  | 0        | Initial value (v-model)|
 | data        | Array         | null     | Custom data. |
 | is-disabled       | Boolean        | false      | Flag for disable slider bar |
 | show-tooltip      | Boolean       | true     | Flag display tooltip |
