@@ -9,7 +9,7 @@
 
 
 # Example 👁
-### [vue-slide-bar-demo-page](https://frncsdrk.github.io/vue-slide-bar-demo-page/)
+### [vue-slide-bar-demo-page](https://frncsdrk.github.io/vue-slide-bar-demo-page/) made by [frncsdrk](https://github.com/frncsdrk)
 
 
 # Install
