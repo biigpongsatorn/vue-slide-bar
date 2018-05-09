@@ -1,11 +1,12 @@
 <p align="center">
 <a href="https://npmjs.com/package/vue-slide-bar"><img src="https://img.shields.io/npm/v/vue-slide-bar.svg?style=flat" alt="NPM version"></a>
 <a href="https://npmjs.com/package/vue-slide-bar"><img src="https://img.shields.io/npm/dm/vue-slide-bar.svg?style=flat" alt="NPM downloads"></a>
+<a href="https://www.npmjs.com/package/vue-slide-bar"><img src="https://img.shields.io/npm/l/vue-slide-bar.svg?style=flat" alt="License"></a>
 </p>
 
 # 🎢  Vue Slide Bar
 
-> Very Simple Vue Slider Bar Component
+Very Simple Vue Slider Bar Component.
 
 
 # Example 👁
