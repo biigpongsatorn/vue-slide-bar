@@ -3,6 +3,7 @@
   "version": "1.1.0",
   "description": "Very Simple Vue Slider Bar Component",
   "author": "Pongsatorn Nitithammawoot <biig_pongsatorn@hotmail.com>",
+  "license": "MIT",
   "main": "dist/vue-slide-bar.min.js",
   "files": [
     "dist"
