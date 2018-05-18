@@ -11,7 +11,7 @@ Very Simple Vue Slider Bar Component.
 
 
 # Document & Demo Page
-- ### [Document](https://biigpongsatorn.github.io/#/vue-slide-bar)
+- ### [Document & Demo](https://biigpongsatorn.github.io/#/vue-slide-bar)
 - ### [vue-slide-bar-demo-page](https://frncsdrk.github.io/vue-slide-bar-demo-page/)
 
 # Install
