@@ -146,7 +146,7 @@ export default {
 </script>
 ```
 
-## Custom Style && Min-Max
+## Custom Style & Min-Max
 <center><img src="static/images/exam3.png"/></center>
 
 ```html
