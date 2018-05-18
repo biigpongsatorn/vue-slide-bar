@@ -2,6 +2,7 @@
 <a href="https://npmjs.com/package/vue-slide-bar"><img src="https://img.shields.io/npm/v/vue-slide-bar.svg?style=flat" alt="NPM version"></a>
 <a href="https://npmjs.com/package/vue-slide-bar"><img src="https://img.shields.io/npm/dm/vue-slide-bar.svg?style=flat" alt="NPM downloads"></a>
 <a href="https://www.npmjs.com/package/vue-slide-bar"><img src="https://img.shields.io/npm/l/vue-slide-bar.svg?style=flat" alt="License"></a>
+<a href="https://biigpongsatorn.github.io/#/vue-slide-bar"><img src="https://travis-ci.org/biigpongsatorn/biigpongsatorn.github.io.svg?branch=dev" alt="Demo Build Status"></a>
 </p>
 
 # 🎢  Vue Slide Bar
@@ -9,46 +10,56 @@
 Very Simple Vue Slider Bar Component.
 
 
-# Example 👁
-### [vue-slide-bar-demo-page](https://frncsdrk.github.io/vue-slide-bar-demo-page/) made by [frncsdrk](https://github.com/frncsdrk)
-
+# Document & Demo Page
+- ### [Document](https://biigpongsatorn.github.io/#/vue-slide-bar)
+- ### [vue-slide-bar-demo-page](https://frncsdrk.github.io/vue-slide-bar-demo-page/)
 
 # Install
 
 ```sh
 npm install vue-slide-bar --save
 ```
+or
+```sh
+yarn add vue-slide-bar
+```
 
 # Usage
+```javascript
+// main.js
+import Vue from 'vue'
+import VueSlideBar from 'vue-slide-bar'
+
+Vue.component('VueSlideBar', VueSlideBar)
+```
+
+or
+
+```javascript
+// xxx.vue
+import VueSlideBar from 'vue-slide-bar'
+
+export default {
+  components: {
+    VueSlideBar
+  }
+}
+```
 
 ## Simple
 <center><img src="static/images/exam1.png"/></center>
 
 ```html
 <template>
-  <div>
-    <VueSlideBar v-model="value1"/>
-    <h2>Value: {{ value }}</h2>
-    <button type="button" name="button" @click="value = 90">
-      +
-    </button>
-    <button type="button" name="button" @click="value = 20">
-      -
-    </button>
-  </div>
+  <VueSlideBar v-model="value"/>
 </template>
 
 <script>
-import VueSlideBar from 'vue-slide-bar'
-
 export default {
   data () {
     return {
       value: 50
     }
-  },
-  components: {
-    VueSlideBar
   }
 }
 </script>
@@ -227,12 +238,12 @@ export default {
 ### Props
 | Props       | Type          | Default  | Description  |
 | ----------- |:--------------| ---------|--------------|
+| v-model       | Number,String  | 0        | Initial value (v-model)|
 | min         | Number        | 0        | Minimum value   |
 | max         | Number        | 100      | Maximum value   |
-| process-style*    | Object | null  | Process bar style. |
-| tooltip-style*    | Object | null  | Tooltip style. |
-| label-style*    | Object | null  | Label style. |
-| value       | Number,String  | 0        | Initial value (v-model)|
+| process-style    | Object | null  | Process bar style. |
+| tooltip-style    | Object | null  | Tooltip style. |
+| label-style    | Object | null  | Label style. |
 | data        | Array         | null     | Custom data. |
 | is-disabled       | Boolean        | false      | Flag for disable slider bar |
 | show-tooltip      | Boolean       | true     | Flag display tooltip |
@@ -243,7 +254,7 @@ export default {
 ### Events
 | Name          | Type          | Description  |
 | --------------|:--------------|--------------|
-| callbackRange | Params: function(range)  | when values change return range data. |
+| callback-range | `(range) => {}` | Tricker when values change return range data |
 
 ### Slot
 | Name          | Description  |
@@ -252,13 +263,19 @@ export default {
 
 [#](https://vuejs.org/v2/guide/components.html#Scoped-Slots) When using the template element as a slot, can add special properties `slot-scope` to get the value.
 
-## Run example
-``` bash
-# install dependencies
-npm install
+# Contributing
+1. Fork this repository.
+2. Create new branch with feature name.
+3. Run `npm install` and `npm run dev`.
+4. Create your feature.
+5. Commit and set commit message with feature name.
+6. Push your code to your fork repository.
+7. Create pull request. 🙂
 
-# Your application is running here: http://localhost:8080
-npm run dev
+# Support
+
+```
+If you like this project, You can support me with starring ⭐ this repository.
 ```
 
 ## License
