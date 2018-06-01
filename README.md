@@ -7,7 +7,7 @@
 
 # 🎢  Vue Slide Bar
 
-Very Simple Vue Slider Bar Component.
+A Simple Vue Slider Bar Component.
 
 
 # Document & Demo Page
