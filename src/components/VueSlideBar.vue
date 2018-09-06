@@ -280,7 +280,7 @@ export default {
       this.setTransform(this.position)
     },
     setTransform (val) {
-      let value = val - 8
+      let value = val - ((this.$refs.dot.scrollWidth - 2) / 2)
       let translateValue = `translateX(${value}px)`
       this.slider.style.transform = translateValue
       this.slider.style.WebkitTransform = translateValue

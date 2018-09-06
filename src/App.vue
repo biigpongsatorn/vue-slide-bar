@@ -24,7 +24,7 @@
     <VueSlideBar
       v-model="value2"
       :min="1"
-      :max="10"
+      :max="1000"
       :processStyle="slider.processStyle"
       :lineHeight="slider.lineHeight"
       :tooltipStyles="{ backgroundColor: 'red', borderColor: 'red' }">
