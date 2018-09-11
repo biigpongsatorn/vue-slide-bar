@@ -250,7 +250,7 @@ export default {
 | icon-width       | Number | 20 | Icon width |
 | line-height      | Number | 5        | Line height |
 | speed       | Number        | 0.5      | Transition time |
-| paddingless       | Boolean        | false      | Remove padding |
+| paddingless       | Boolean        | false      | Remove padding and min-height |
 
 ### Events
 | Name          | Type          | Description  |
