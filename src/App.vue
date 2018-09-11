@@ -6,20 +6,22 @@
     <button type="button" name="button" @click="value1 = 20">-</button>
     <br><br>
 
-    <VueSlideBar
-      v-model="slider.value"
-      :data="slider.data"
-      :range="slider.range"
-      :labelStyles="{ 'color': '#777', 'font-family': 'Helvetica, sans-serif' }"
-      :processStyle="{ backgroundColor: '#d8d8d8' }"
-      @callbackRange="callbackRange">
-      <template slot="tooltip" slot-scope="tooltip">
-        <img src="static/images/rectangle-slider.svg">
-      </template>
-    </VueSlideBar>
-    <h2>Value: {{slider.value}}</h2>
-    <h2>Label: {{rangeValue.label}}</h2>
-    <br><br>
+    <div>
+      <VueSlideBar
+        v-model="slider.value"
+        :data="slider.data"
+        :range="slider.range"
+        :labelStyles="{ 'color': '#777', 'font-family': 'Helvetica, sans-serif' }"
+        :processStyle="{ backgroundColor: '#d8d8d8' }"
+        paddingless
+        @callbackRange="callbackRange">
+        <template slot="tooltip" slot-scope="tooltip">
+          <img src="static/images/rectangle-slider.svg">
+        </template>
+      </VueSlideBar>
+      <h2>Value: {{slider.value}}</h2>
+      <h2>Label: {{rangeValue.label}}</h2>
+    </div>
 
     <VueSlideBar
       v-model="value2"

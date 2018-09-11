@@ -158,7 +158,7 @@ export default {
       return [this.minimum, this.maximum]
     },
     calculateHeight () {
-      return this.range ? { minHeight: '100px', 'padding-top': this.paddingless ? 'unset' : '40px' } : { 'padding-top': this.paddingless ? 'unset' : '40px' }
+      return this.paddingless ? {} : { 'padding-top': '40px', 'min-height': this.range ? '100px' : null }
     }
   },
   watch: {
