@@ -2,7 +2,7 @@
   <div
     ref="wrap"
     class="vue-slide-bar-component vue-slide-bar-horizontal"
-    :style="calculateMinHeight"
+    :style="calculateHeight"
     @click="wrapClick">
     <div ref="elem" class="vue-slide-bar" :style="{height: `${lineHeight}px`}">
       <template>
@@ -91,6 +91,10 @@ export default {
       type: Boolean,
       default: false
     },
+    paddingless: {
+      type: Boolean,
+      default: false
+    },
     tooltipStyles: Object,
     labelStyles: Object,
     processStyle: Object
@@ -153,8 +157,8 @@ export default {
     valueLimit () {
       return [this.minimum, this.maximum]
     },
-    calculateMinHeight () {
-      return this.range ? { minHeight: '100px' } : {}
+    calculateHeight () {
+      return this.range ? { minHeight: '100px', 'padding-top': this.paddingless ? 'unset' : '40px' } : { 'padding-top': this.paddingless ? 'unset' : '40px' }
     }
   },
   watch: {
@@ -365,7 +369,6 @@ export default {
   position: relative;
   box-sizing: border-box;
   user-select: none;
-  padding-top: 40px !important;
 }
 .vue-slide-bar {
   position: relative;
