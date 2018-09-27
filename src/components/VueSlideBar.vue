@@ -163,8 +163,8 @@ export default {
   },
   watch: {
     value (val) {
-      if (this.flag) this.setValue(val, true)
-      else this.setValue(val, true, this.speed)
+      if (this.flag) this.setValue(val)
+      else this.setValue(val, this.speed)
     },
     max (val) {
       if (val < this.min) {
@@ -211,7 +211,7 @@ export default {
     },
     moveStart (e, index) {
       this.flag = true
-      this.$emit('drag-start', this)
+      this.$emit('dragStart', this)
     },
     moving (e) {
       if (!this.flag) return false
@@ -221,7 +221,7 @@ export default {
     },
     moveEnd (e) {
       if (this.flag) {
-        this.$emit('drag-end', this)
+        this.$emit('dragEnd', this)
         if (this.lazy && this.isDiff(this.val, this.value)) {
           this.syncValue()
         }
@@ -270,11 +270,11 @@ export default {
       val = this.spacing * val + this.minimum
       this.setCurrentValue(val)
     },
-    setValue (val, noCb, speed) {
+    setValue (val, speed) {
       if (this.isDiff(this.val, val)) {
         let resetVal = this.limitValue(val)
         this.val = resetVal
-        this.syncValue(noCb)
+        this.syncValue()
       }
       this.$nextTick(() => this.setPosition(speed))
     },
@@ -314,13 +314,12 @@ export default {
       }
       return inRange(val)
     },
-    syncValue (noCb) {
+    syncValue () {
       let val = this.val
       if (this.range) {
         this.$emit('callbackRange', this.range[this.currentIndex])
       }
       this.$emit('input', val)
-      noCb || this.$emit('callback', val)
     },
     getValue () {
       return this.val
@@ -352,7 +351,7 @@ export default {
     this.$nextTick(() => {
       if (this.isComponentExists) {
         this.getStaticData()
-        this.setValue(this.limitValue(this.value), true, 0)
+        this.setValue(this.limitValue(this.value), 0)
         this.bindEvents()
       }
     })

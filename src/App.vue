@@ -119,6 +119,15 @@ export default {
           clearInterval(this.loader)
         }
       }, 100)
+    },
+    t1 (v) {
+      console.log(v)
+    },
+    t2 (v) {
+      console.log('start', v)
+    },
+    t3 (v) {
+      console.log('end', v)
     }
   },
   components: {

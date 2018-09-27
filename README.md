@@ -253,9 +253,12 @@ export default {
 | paddingless       | Boolean        | false      | Remove padding and min-height |
 
 ### Events
-| Name          | Type          | Description  |
-| --------------|:--------------|--------------|
-| callback-range | `(range) => {}` | Tricker when values change return range data |
+| Name          | Description  |
+| --------------|--------------|
+| input | Tricker when values change |
+| callbackRange | Tricker when range values change |
+| dragStart | Tricker when start drag |
+| dragEnd | Tricker when stop drag |
 
 ### Slot
 | Name          | Description  |
