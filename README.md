@@ -255,10 +255,10 @@ export default {
 ### Events
 | Name          | Description  |
 | --------------|--------------|
-| input | Tricker when values change |
-| callbackRange | Tricker when range values change |
-| dragStart | Tricker when start drag |
-| dragEnd | Tricker when stop drag |
+| input | triggered on value change |
+| callbackRange | triggered on range value change |
+| dragStart | triggered on start drag |
+| dragEnd | triggered on stop drag |
 
 ### Slot
 | Name          | Description  |
