@@ -246,6 +246,7 @@ export default {
 | label-style    | Object | null  | Label style. |
 | data        | Array         | null     | Custom data. |
 | is-disabled       | Boolean        | false      | Flag for disable slider bar |
+| draggable      | Boolean       | true     | Flag for active/disable draggable |
 | show-tooltip      | Boolean       | true     | Flag display tooltip |
 | icon-width       | Number | 20 | Icon width |
 | line-height      | Number | 5        | Line height |
