@@ -32,7 +32,6 @@
       :tooltipStyles="{ backgroundColor: 'red', borderColor: 'red' }">
     </VueSlideBar>
     <h2>Value: {{value2}}</h2>
-    <br><br>
 
     <VueSlideBar
       v-model="loading"

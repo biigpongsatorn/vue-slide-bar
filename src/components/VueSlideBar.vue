@@ -141,7 +141,7 @@ export default {
       if (this.data) {
         return this.data.length - 1
       } else if (Math.floor((this.maximum - this.minimum) * this.multiple) % (this.interval * this.multiple) !== 0) {
-        this.printError('[VueSlider error]: Prop[interval] is illegal, Please make sure that the interval can be divisible')
+        this.printError('[VueSlideBar error]: Prop[interval] is illegal, Please make sure that the interval can be divisible')
       }
       return (this.maximum - this.minimum) / this.interval
     },
@@ -168,7 +168,7 @@ export default {
     },
     max (val) {
       if (val < this.min) {
-        return this.printError('[VueSlider error]: The maximum value can not be less than the minimum value.')
+        return this.printError('[VueSlideBar error]: The maximum value can not be less than the minimum value.')
       }
       let resetVal = this.limitValue(this.val)
       this.setValue(resetVal)
@@ -176,7 +176,7 @@ export default {
     },
     min (val) {
       if (val > this.max) {
-        return this.printError('[VueSlider error]: The minimum value can not be greater than the maximum value.')
+        return this.printError('[VueSlideBar error]: The minimum value can not be greater than the maximum value.')
       }
       let resetVal = this.limitValue(this.val)
       this.setValue(resetVal)
@@ -304,10 +304,10 @@ export default {
       }
       const inRange = (v) => {
         if (v < this.min) {
-          this.printError(`[VueSlider warn]: The value of the slider is ${val}, the minimum value is ${this.min}, the value of this slider can not be less than the minimum value`)
+          this.printError(`[VueSlideBar warn]: The value of the slider is ${val}, the minimum value is ${this.min}, the value of this slider can not be less than the minimum value`)
           return this.min
         } else if (v > this.max) {
-          this.printError(`[VueSlider warn]: The value of the slider is ${val}, the maximum value is ${this.max}, the value of this slider can not be greater than the maximum value`)
+          this.printError(`[VueSlideBar warn]: The value of the slider is ${val}, the maximum value is ${this.max}, the value of this slider can not be greater than the maximum value`)
           return this.max
         }
         return v
@@ -346,7 +346,7 @@ export default {
   mounted () {
     this.isComponentExists = true
     if (typeof window === 'undefined' || typeof document === 'undefined') {
-      return this.printError('[VueSlider error]: window or document is undefined, can not be initialization.')
+      return this.printError('[VueSlideBar error]: window or document is undefined, can not be initialization.')
     }
     this.$nextTick(() => {
       if (this.isComponentExists) {
