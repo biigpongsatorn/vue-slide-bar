@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <VueSlideBar v-model="value1"/>
+    <VueSlideBar v-model="value1" :draggable="false"/>
     <h2>Value: {{value1}}</h2>
     <button type="button" name="button" @click="value1 = 90">+</button>
     <button type="button" name="button" @click="value1 = 20">-</button>

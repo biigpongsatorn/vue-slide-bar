@@ -1,13 +1,14 @@
 <template>
   <div
     ref="wrap"
+    id="wrap"
     class="vue-slide-bar-component vue-slide-bar-horizontal"
     :style="calculateHeight"
     @click="wrapClick">
-    <div ref="elem" class="vue-slide-bar" :style="{height: `${lineHeight}px`}">
+    <div ref="elem" class="vue-slide-bar" :style="{height: `${lineHeight}px`}" id="slider">
       <template>
-        <div ref="dot"
-          class="vue-slide-bar-always vue-slide-bar-dot"
+        <div ref="tooltip"
+          class="vue-slide-bar-always vue-slide-bar-tooltip-container"
           :style="{'width': `${iconWidth}px`}"
           @mousedown="moveStart"
           @touchstart="moveStart">
@@ -91,6 +92,10 @@ export default {
       type: Boolean,
       default: false
     },
+    draggable: {
+      type: Boolean,
+      default: true
+    },
     paddingless: {
       type: Boolean,
       default: false
@@ -101,7 +106,7 @@ export default {
   },
   computed: {
     slider () {
-      return this.$refs.dot
+      return this.$refs.tooltip
     },
     val: {
       get () {
@@ -205,22 +210,23 @@ export default {
       return e.clientX - this.offset
     },
     wrapClick (e) {
-      if (this.isDisabled) return false
+      if (this.isDisabled || (!this.draggable && e.target.id === 'wrap')) return false
       let pos = this.getPos(e)
       this.setValueOnPos(pos)
     },
     moveStart (e, index) {
+      if (!this.draggable) return false
       this.flag = true
       this.$emit('dragStart', this)
     },
     moving (e) {
-      if (!this.flag) return false
+      if (!this.flag || !this.draggable) return false
       e.preventDefault()
       if (e.targetTouches && e.targetTouches[0]) e = e.targetTouches[0]
       this.setValueOnPos(this.getPos(e), true)
     },
     moveEnd (e) {
-      if (this.flag) {
+      if (this.flag && this.draggable) {
         this.$emit('dragEnd', this)
         if (this.lazy && this.isDiff(this.val, this.value)) {
           this.syncValue()
@@ -284,7 +290,7 @@ export default {
       this.setTransform(this.position)
     },
     setTransform (val) {
-      let value = val - ((this.$refs.dot.scrollWidth - 2) / 2)
+      let value = val - ((this.$refs.tooltip.scrollWidth - 2) / 2)
       let translateValue = `translateX(${value}px)`
       this.slider.style.transform = translateValue
       this.slider.style.WebkitTransform = translateValue
@@ -397,7 +403,7 @@ export default {
   left: 0;
   will-change: width;
 }
-.vue-slide-bar-dot {
+.vue-slide-bar-tooltip-container {
   position: absolute;
   transition: all 0s;
   will-change: transform;
