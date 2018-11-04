@@ -1,7 +1,7 @@
 <template>
   <div class="progress-bar" v-bind:class="{ rtl: rtl }">
-    <span class="progress-start">{{min}} <span v-if="showunit">{{unit}}</span></span>
-    <span class="progress-finish">{{max}} <span v-if="showunit">{{unit}}</span></span>
+    <span class="progress-start"> <span v-if="showunit"> {{min}} {{unit}}</span></span>
+    <span class="progress-finish"> <span v-if="showunit"> {{max}} {{unit}}</span></span>
     <div
       ref="wrap"
       id="wrap"
