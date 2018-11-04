@@ -1,31 +1,35 @@
 <template>
-  <div
-    ref="wrap"
-    id="wrap"
-    class="vue-slide-bar-component vue-slide-bar-horizontal"
-    :style="calculateHeight"
-    @click="wrapClick">
-    <div ref="elem" class="vue-slide-bar" :style="{height: `${lineHeight}px`}" id="slider">
-      <template>
-        <div ref="tooltip"
-          class="vue-slide-bar-always vue-slide-bar-tooltip-container"
-          :style="{'width': `${iconWidth}px`}"
-          @mousedown="moveStart"
-          @touchstart="moveStart">
-          <span class="vue-slide-bar-tooltip-top vue-slide-bar-tooltip-wrap" v-if="showTooltip">
-            <slot name="tooltip">
-              <span class="vue-slide-bar-tooltip" :style="tooltipStyles">{{ val }}</span>
-            </slot>
+  <div class="progress-bar" v-bind:class="{ rtl: rtl }">
+    <span class="progress-start">{{min}} <span v-if="showunit">{{unit}}</span></span>
+    <span class="progress-finish">{{max}} <span v-if="showunit">{{unit}}</span></span>
+    <div
+      ref="wrap"
+      id="wrap"
+      class="vue-slide-bar-component vue-slide-bar-horizontal"
+      :style="calculateHeight"
+      @click="wrapClick">
+      <div ref="elem" class="vue-slide-bar" :style="{height: `${lineHeight}px`}" id="slider">
+        <template>
+          <div ref="tooltip"
+            class="vue-slide-bar-always vue-slide-bar-tooltip-container"
+            :style="{'width': `${iconWidth}px`}"
+            @mousedown="moveStart"
+            @touchstart="moveStart">
+            <span class="vue-slide-bar-tooltip-top vue-slide-bar-tooltip-wrap" v-if="showTooltip">
+              <slot name="tooltip">
+                <span class="vue-slide-bar-tooltip" :style="tooltipStyles">{{ val }} {{ unit }}</span>
+              </slot>
+            </span>
+          </div>
+        </template>
+        <div ref="process" class="vue-slide-bar-process" :style="processStyle"></div>
+      </div>
+      <div v-if="range" class="vue-slide-bar-range">
+        <div v-for="(r, index) in range" :key="index" class="vue-slide-bar-separate" :style="dataLabelStyles">
+          <span v-if="!r.isHide" class="vue-slide-bar-separate-text">
+            {{ r.label }}
           </span>
         </div>
-      </template>
-      <div ref="process" class="vue-slide-bar-process" :style="processStyle"></div>
-    </div>
-    <div v-if="range" class="vue-slide-bar-range">
-      <div v-for="(r, index) in range" :key="index" class="vue-slide-bar-separate" :style="dataLabelStyles">
-        <span v-if="!r.isHide" class="vue-slide-bar-separate-text">
-          {{ r.label }}
-        </span>
       </div>
     </div>
   </div>
@@ -97,6 +101,18 @@ export default {
       default: true
     },
     paddingless: {
+      type: Boolean,
+      default: false
+    },
+    unit:{
+      type: String,
+      default: ""
+    },
+    showunit:{
+      type: Boolean,
+      default: false
+    }, 
+    rtl:{
       type: Boolean,
       default: false
     },
@@ -291,12 +307,22 @@ export default {
     },
     setTransform (val) {
       let value = val - ((this.$refs.tooltip.scrollWidth - 2) / 2)
-      let translateValue = `translateX(${value}px)`
+      if (this.rtl ==true) {
+        var translateValue = `translateX(-${value}px)`
+      }
+      else{
+        var translateValue = `translateX(${value}px)`
+      }
       this.slider.style.transform = translateValue
       this.slider.style.WebkitTransform = translateValue
       this.slider.style.msTransform = translateValue
       this.$refs.process.style.width = `${val}px`
-      this.$refs.process.style['left'] = 0
+      if(this.rtl == true){
+        this.$refs.process.style['right'] = 0
+      }
+      else{
+        this.$refs.process.style['left'] = 0
+      }
     },
     setTransitionTime (time) {
       this.slider.style.transitionDuration = `${time}s`
@@ -336,7 +362,12 @@ export default {
     getStaticData () {
       if (this.$refs.elem) {
         this.size = this.$refs.elem.offsetWidth
-        this.offset = this.$refs.elem.getBoundingClientRect().left
+        if(this.rtl == true){
+          this.offset = this.$refs.elem.getBoundingClientRect().right
+        }
+        else{
+          this.offset = this.$refs.elem.getBoundingClientRect().left
+        }
       }
     },
     refresh () {
@@ -366,7 +397,7 @@ export default {
     this.isComponentExists = false
     this.unbindEvents()
   }
-}
+};
 </script>
 
 <style scoped>
@@ -466,5 +497,56 @@ export default {
   white-space: nowrap;
   transform: translate(-50%, 0);
   top: 6px;
+}
+.progress-start {
+    left: 0;
+}
+.progress-finish {
+    right: 0;
+}
+/*RTL Style*/
+.rtl .vue-slide-bar::after {
+  right: 0;
+  left: unset;
+}
+.rtl .vue-slide-bar-process {
+  right: 0;
+  left: unset;
+}
+.rtl .vue-slide-bar-dot {
+  right: 0;
+  left: unset;
+}
+.rtl .vue-slide-bar-tooltip-top{
+  left: unset;
+  right :  40%;
+}
+.rtl .vue-slide-bar-tooltip::before {
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.rtl .vue-slide-bar-tooltip-container{
+  right: 0;
+  left: unset;
+}
+.rtl .progress-start {
+  right: 0;
+  left:unset;
+}
+.rtl .progress-finish {
+  left: 0;
+  right:unset;
+}
+.vue-slide-bar-tooltip-wrap{
+  top: -24px!important;
+}
+.vue-slide-bar-tooltip{
+  border: 1px solid #2e77c3!important;
+  background-color: #2e77c3!important;
+}
+.vue-slide-bar-process{
+  background-color: #2e77c3!important;
 }
 </style>
