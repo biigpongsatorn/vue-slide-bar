@@ -29,7 +29,10 @@
       :max="1000"
       :processStyle="slider.processStyle"
       :lineHeight="slider.lineHeight"
-      :tooltipStyles="{ backgroundColor: 'red', borderColor: 'red' }">
+      :tooltipStyles="{ backgroundColor: 'red', borderColor: 'red' }"
+      @dragStart="dragStart"
+      @dragEnd="dragEnd"
+      @input="inputEvent">
     </VueSlideBar>
     <h2>Value: {{value2}}</h2>
 
@@ -119,14 +122,14 @@ export default {
         }
       }, 100)
     },
-    t1 (v) {
-      console.log(v)
+    dragStart () {
+      console.log('dragStart')
     },
-    t2 (v) {
-      console.log('start', v)
+    dragEnd () {
+      console.log('dragEnd')
     },
-    t3 (v) {
-      console.log('end', v)
+    inputEvent () {
+      console.log('inputEvent')
     }
   },
   components: {
