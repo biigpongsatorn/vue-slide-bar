@@ -20,8 +20,6 @@
     "build:example": "node build/build.js"
   },
   "dependencies": {
-    "postcss-import": "^11.0.0",
-    "postcss-url": "^7.3.0",
     "vue": "^2.5.2"
   },
   "devDependencies": {
