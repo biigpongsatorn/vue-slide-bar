@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div>
+      <h1>See example code <a href="https://github.com/biigpongsatorn/vue-slide-bar/blob/master/src/App.vue" target="_blank">here</a></h1>
+    </div>
     <VueSlideBar v-model="value1" :draggable="false"/>
     <h2>Value: {{value1}}</h2>
     <button type="button" name="button" @click="value1 = 90">+</button>
