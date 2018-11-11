@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div>
+      <h1>See example code <a href="https://github.com/biigpongsatorn/vue-slide-bar/blob/master/src/App.vue" target="_blank">here</a></h1>
+    </div>
     <VueSlideBar v-model="value1" :draggable="false"/>
     <h2>Value: {{value1}}</h2>
     <button type="button" name="button" @click="value1 = 90">+</button>
@@ -29,7 +32,10 @@
       :max="1000"
       :processStyle="slider.processStyle"
       :lineHeight="slider.lineHeight"
-      :tooltipStyles="{ backgroundColor: 'red', borderColor: 'red' }">
+      :tooltipStyles="{ backgroundColor: 'red', borderColor: 'red' }"
+      @dragStart="dragStart"
+      @dragEnd="dragEnd"
+      @input="inputEvent">
     </VueSlideBar>
     <h2>Value: {{value2}}</h2>
 
@@ -119,14 +125,14 @@ export default {
         }
       }, 100)
     },
-    t1 (v) {
-      console.log(v)
+    dragStart () {
+      console.log('dragStart')
     },
-    t2 (v) {
-      console.log('start', v)
+    dragEnd () {
+      console.log('dragEnd')
     },
-    t3 (v) {
-      console.log('end', v)
+    inputEvent () {
+      console.log('inputEvent')
     }
   },
   components: {
