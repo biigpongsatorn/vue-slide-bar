@@ -17,7 +17,8 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "rm -rf ./dist && bili src/components/VueSlideBar.vue",
-    "build:example": "node build/build.js"
+    "build:example": "node build/build.js",
+    "prepublish": "npm run build:lib"
   },
   "dependencies": {
     "postcss-import": "^11.0.0",
