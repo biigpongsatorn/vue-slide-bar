@@ -242,7 +242,7 @@ export default {
 | min         | Number        | 0        | Minimum value   |
 | max         | Number        | 100      | Maximum value   |
 | process-style    | Object | null  | Process bar style. |
-| tooltip-style    | Object | null  | Tooltip style. |
+| tooltip-styles    | Object | null  | Tooltip style. |
 | label-style    | Object | null  | Label style. |
 | data        | Array         | null     | Custom data. |
 | is-disabled       | Boolean        | false      | Flag for disable slider bar |
