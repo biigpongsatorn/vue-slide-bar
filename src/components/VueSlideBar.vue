@@ -1,7 +1,6 @@
 <template>
   <div
     ref="wrap"
-    id="wrap"
     class="vue-slide-bar-component vue-slide-bar-horizontal"
     :style="calculateHeight"
     @click="wrapClick">
