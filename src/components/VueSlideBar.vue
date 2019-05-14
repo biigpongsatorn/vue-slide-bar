@@ -5,7 +5,7 @@
     class="vue-slide-bar-component vue-slide-bar-horizontal"
     :style="calculateHeight"
     @click="wrapClick">
-    <div ref="elem" class="vue-slide-bar" :style="{height: `${lineHeight}px`}" id="slider">
+    <div ref="elem" class="vue-slide-bar" :style="{height: `${lineHeight}px`}">
       <template>
         <div ref="tooltip"
           class="vue-slide-bar-always vue-slide-bar-tooltip-container"
