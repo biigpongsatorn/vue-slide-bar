@@ -1,11 +1,11 @@
 <template>
   <div
     ref="wrap"
-    id="wrap"
+    :id="id"
     class="vue-slide-bar-component vue-slide-bar-horizontal"
     :style="calculateHeight"
     @click="wrapClick">
-    <div ref="elem" class="vue-slide-bar" :style="{height: `${lineHeight}px`}" id="slider">
+    <div ref="elem" class="vue-slide-bar" :style="{height: `${lineHeight}px`}">
       <template>
         <div ref="tooltip"
           class="vue-slide-bar-always vue-slide-bar-tooltip-container"
@@ -55,6 +55,10 @@ export default {
     data: {
       type: Array,
       default: null
+    },
+    id: {
+      type: String,
+      default: 'wrap'
     },
     range: {
       type: Array,
@@ -210,7 +214,7 @@ export default {
       return e.clientX - this.offset
     },
     wrapClick (e) {
-      if (this.isDisabled || (!this.draggable && e.target.id === 'wrap')) return false
+      if (this.isDisabled || (!this.draggable && e.target.id === this.id)) return false
       let pos = this.getPos(e)
       this.setValueOnPos(pos)
     },
