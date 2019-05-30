@@ -1,151 +1,274 @@
 <p>
-  <a href="https://npmjs.com/package/vue-element-loading"><img src="https://img.shields.io/npm/v/vue-element-loading.svg?style=flat" alt="NPM version"></a>
-  <a href="https://npmjs.com/package/vue-element-loading"><img src="https://img.shields.io/npm/dm/vue-element-loading.svg?style=flat" alt="NPM downloads"></a>
-  <a href="https://www.npmjs.com/package/vue-element-loading"><img src="https://img.shields.io/npm/l/vue-element-loading.svg?style=flat" alt="License"></a>
-  <a href="https://www.npmjs.com/package/vue-element-loading"><img src="https://travis-ci.org/biigpongsatorn/biigpongsatorn.github.io.svg?branch=dev" alt="Build Status"></a>
+<a href="https://npmjs.com/package/vue-slide-bar"><img src="https://img.shields.io/npm/v/vue-slide-bar.svg?style=flat" alt="NPM version"></a>
+<a href="https://npmjs.com/package/vue-slide-bar"><img src="https://img.shields.io/npm/dm/vue-slide-bar.svg?style=flat" alt="NPM downloads"></a>
+<a href="https://www.npmjs.com/package/vue-slide-bar"><img src="https://img.shields.io/npm/l/vue-slide-bar.svg?style=flat" alt="License"></a>
+<a href="https://biigpongsatorn.github.io/#/vue-slide-bar"><img src="https://travis-ci.org/biigpongsatorn/biigpongsatorn.github.io.svg?branch=dev" alt="Demo Build Status"></a>
 </p>
 
-# vue-element-loading
+# 🎢  Vue Slide Bar
 
-⏳ Loading inside a container or full screen for Vue.js
+A Simple Vue Slider Bar Component.
 
-# 👀 Document & Demo Page
 
-- [Docs & Live demo](https://biigpongsatorn.github.io/#/vue-element-loading)
-- [Fully feature live demo](https://vue-element-loading.netlify.com/)
+# Document & Demo Page
+- ### [Document & Demo](https://biigpongsatorn.github.io/#/vue-slide-bar)
+- ### [vue-slide-bar-demo-page](https://frncsdrk.github.io/vue-slide-bar-demo-page/)
 
-# 💻 Install
+# Install
 
 ```sh
-npm install --save vue-element-loading
+npm install vue-slide-bar --save
 ```
 or
 ```sh
-yarn add vue-element-loading
+yarn add vue-slide-bar
 ```
 
-# 🕹 Usage
+# Usage
 ```javascript
+// main.js
 import Vue from 'vue'
-import VueElementLoading from 'vue-element-loading'
+import VueSlideBar from 'vue-slide-bar'
 
-Vue.component('VueElementLoading', VueElementLoading)
+Vue.component('VueSlideBar', VueSlideBar)
 ```
+
 or
+
 ```javascript
-import VueElementLoading from 'vue-element-loading'
+// xxx.vue
+import VueSlideBar from 'vue-slide-bar'
 
 export default {
   components: {
-    VueElementLoading
+    VueSlideBar
   }
 }
 ```
 
-# 🔎 Example
+## Simple
+<center><img src="static/images/exam1.png"/></center>
 
-## Inside container
 ```html
-<div class="parent">
-  <vue-element-loading :active="show" spinner="bar-fade-scale"/>
-  <span>
-    This is my content.
-  </span>
-</div>
+<template>
+  <VueSlideBar v-model="value"/>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      value: 50
+    }
+  }
+}
+</script>
 ```
 
-## Full screen
+## With Label
+<center><img src="static/images/exam2.png"/></center>
+
 ```html
-<body>
-  <vue-element-loading :active="show" is-full-screen/>
-</body>
+<template>
+  <div>
+    <VueSlideBar
+      v-model="slider.value"
+      :data="slider.data"
+      :range="slider.range"
+      :labelStyles="{ color: '#4a4a4a', backgroundColor: '#4a4a4a' }"
+      :processStyle="{ backgroundColor: '#d8d8d8' }"
+      @callbackRange="callbackRange">
+      <template slot="tooltip" slot-scope="tooltip">
+        <img src="static/images/rectangle-slider.svg">
+      </template>
+    </VueSlideBar>
+    <h2>Value: {{slider.value}}</h2>
+    <h2>Label: {{rangeValue.label}}</h2>
+  </div>
+</template>
+
+<script>
+import VueSlideBar from 'vue-slide-bar'
+
+export default {
+  data () {
+    return {
+      rangeValue: {},
+      slider: {
+        value: 45,
+        data: [
+          15,
+          30,
+          45,
+          60,
+          75,
+          90,
+          120
+        ],
+        range: [
+          {
+            label: '15 mins'
+          },
+          {
+            label: '30 mins',
+            isHide: true
+          },
+          {
+            label: '45 mins'
+          },
+          {
+            label: '1 hr',
+            isHide: true
+          },
+          {
+            label: '1 hr 15 mins'
+          },
+          {
+            label: '1 hr 30 mins',
+            isHide: true
+          },
+          {
+            label: '2 hrs'
+          }
+        ]
+      }
+    }
+  },
+  methods: {
+    callbackRange (val) {
+      this.rangeValue = val
+    }
+  },
+  components: {
+    VueSlideBar
+  }
+}
+</script>
 ```
 
-## Adjust Spinner Color
-Use the `color` parameter to set the color of the displayed spinner (does not affect custom spinner images).
+## Custom Style & Min-Max
+<center><img src="static/images/exam3.png"/></center>
+
 ```html
-<div class="parent">
-  <vue-element-loading :active="show" spinner="bar-fade-scale" color="#FF6700"/>
-  <span>
-    This is my content.
-  </span>
-</div>
+<template>
+  <div>
+    <VueSlideBar
+      v-model="value2"
+      :min="1"
+      :max="10"
+      :processStyle="slider.processStyle"
+      :lineHeight="slider.lineHeight"
+      :tooltipStyles="{ backgroundColor: 'red', borderColor: 'red' }">
+    </VueSlideBar>
+    <h2>Value: {{value2}}</h2>
+  </div>
+</template>
+
+<script>
+import VueSlideBar from 'vue-slide-bar'
+
+export default {
+  data () {
+    return {
+      value2: 8,
+      slider: {
+        lineHeight: 10,
+        processStyle: {
+          backgroundColor: 'red'
+        }
+      }
+    }
+  },
+  components: {
+    VueSlideBar
+  }
+}
+</script>
 ```
 
-## Set text
-Use the `text` parameter to set the text which will appear below loader.
+## Loading
+<center><img src="static/images/exam4.png"/></center>
+
 ```html
-<div class="parent">
-  <vue-element-loading :active="show" spinner="bar-fade-scale" color="#FF6700" text="Please wait..."/>
-  <span>
-    This is my content.
-  </span>
-</div>
+<template>
+  <div>
+    <VueSlideBar
+      v-model="loading"
+      :showTooltip="false"
+      :lineHeight="20"
+      :isDisabled="true"/>
+    <br>
+    <button type="button" name="button" @click="startLoad()">
+      Click to start load
+    </button>
+    <h2>Loading: {{loading}}%</h2>
+  </div>
+</template>
+
+<script>
+import VueSlideBar from 'vue-slide-bar'
+
+export default {
+  data () {
+    return {
+      loader: null,
+      loading: 0
+    }
+  },
+  methods: {
+    startLoad () {
+      this.loader = setInterval(() => {
+        this.loading++
+        if (this.loading === 100) {
+          console.log('clear', this.loading)
+          clearInterval(this.loader)
+        }
+      }, 100)
+    }
+  }
+  components: {
+    VueSlideBar
+  }
+}
+</script>
 ```
 
-## Set text style
-Use the `textStyle` parameter to set the style of text( you need to pass css-in-js way using camelCase exp. fontSize, backgroundColor etc).
-```html
-<div class="parent">
-  <vue-element-loading :active="show" spinner="bar-fade-scale" color="#FF6700" text="Please textStyle={fontSize: '25px'}  wait..."/>
-  <span>
-    This is my content.
-  </span>
-</div>
-```
+## Options
 
-## Adjust Spinner Size
-Use the `size` parameter to set the size of the displayed spinner (does not affect custom spinner images).
-```html
-<div class="parent">
-  <vue-element-loading :active="show" spinner="bar-fade-scale" size="128"/>
-  <span>
-    This is my content.
-  </span>
-</div>
-```
-
-## Adjust Spinner Animation Speed
-Use the `duration` parameter to set the animation loop duration in seconds (does not affect custom spinner images).
-```html
-<div class="parent">
-  <vue-element-loading :active="show" spinner="bar-fade-scale" duration="1.0"/>
-  <span>
-    This is my content.
-  </span>
-</div>
-```
-
-## Customize loader
-```html
-<div class="parent">
-  <vue-element-loading :active="show">
-    <img src="/static/pikachu.gif" width="55px" height="55px">
-  </vue-element-loading>
-</div>
-```
-
-# 🌀 Spinner
-
-<img src="https://raw.githubusercontent.com/biigpongsatorn/vue-element-loading/HEAD/static/spinner.png">
-
-[See full document here.](https://biigpongsatorn.github.io/#/vue-element-loading)
-
-# ⚙️ Props
+### Props
 | Props       | Type          | Default  | Description  |
 | ----------- |:--------------| ---------|--------------|
-| active      | Boolean       | -        | Status for show/hide loading |
-| spinner    | String        | spinner   | Spinner icon name: `spinner`, `mini-spinner`, `ring`, `line-wave`, `line-scale`, `line-down`, `bar-fade`, `bar-fade-scale` |
-| color    | String        | #000        | Color of spinner icon |
-| background-color    | String        | rgba(255, 255, 255, .9)        | Background color of spinner icon (for overlay) |
-| size    | String        | "40"        | The size to display the spinner in pixels  (**NOTE:** this will not affect custom spinner images) |
-| duration    | String        | "0.6"        | The duration of one 'loop' of the spinner animation, in seconds  (**NOTE:** this will not affect custom spinner images) |
-| is-full-screen    | Boolean        | false        | Loader will overlay the full page |
-| text   | String    | -  | Text will appear below loader |
-| text-style | Object | {} | Change style of the text below loader |
+| v-model       | Number,String  | 0        | Initial value (v-model)|
+| min         | Number        | 0        | Minimum value   |
+| max         | Number        | 100      | Maximum value   |
+| process-style    | Object | null  | Process bar style. |
+| tooltip-styles    | Object | null  | Tooltip style. |
+| label-style    | Object | null  | Label style. |
+| data        | Array         | null     | Custom data. |
+| is-disabled       | Boolean        | false      | Flag for disable slider bar |
+| draggable      | Boolean       | true     | Flag for active/disable draggable |
+| show-tooltip      | Boolean       | true     | Flag display tooltip |
+| icon-width       | Number | 20 | Icon width |
+| line-height      | Number | 5        | Line height |
+| speed       | Number        | 0.5      | Transition time |
+| paddingless       | Boolean        | false      | Remove padding and min-height |
 
+### Events
+| Name          | Description  |
+| --------------|--------------|
+| input | triggered on value change |
+| callbackRange | triggered on range value change |
+| dragStart | triggered on start drag |
+| dragEnd | triggered on stop drag |
 
-# 🤝 Contributing
+### Slot
+| Name          | Description  |
+| --------------|--------------|
+| tooltip       | Customize the tooltip slot.|
+
+[#](https://vuejs.org/v2/guide/components.html#Scoped-Slots) When using the template element as a slot, can add special properties `slot-scope` to get the value.
+
+# Contributing
 1. Fork this repository.
 2. Create new branch with feature name.
 3. Run `npm install` and `npm run dev`.
@@ -154,11 +277,13 @@ Use the `duration` parameter to set the animation loop duration in seconds (does
 6. Push your code to your fork repository.
 7. Create pull request. 🙂
 
-# ⭐️ Support
+# Support
 
+```
 If you like this project, You can support me with starring ⭐ this repository.
+```
 
-# 📄 License
+## License
 
 [MIT](LICENSE)
 
