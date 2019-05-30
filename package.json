@@ -1,7 +1,7 @@
 {
   "name": "vue-slide-bar",
   "description": "Simple Vue Slide Bar Component",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "author": "biig_pongsatorn <biig_pongsatorn@hotmail.com>",
   "license": "MIT",
   "main": "lib/vue-slide-bar.min.js",
