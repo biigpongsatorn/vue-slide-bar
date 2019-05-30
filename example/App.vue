@@ -18,8 +18,8 @@
         :processStyle="{ backgroundColor: '#d8d8d8' }"
         paddingless
         @callbackRange="callbackRange">
-        <template slot="tooltip" slot-scope="tooltip">
-          <img src="static/images/rectangle-slider.svg">
+        <template slot="tooltip">
+          <img src="/static/images/rectangle-slider.svg">
         </template>
       </VueSlideBar>
       <h2>Value: {{slider.value}}</h2>
@@ -54,10 +54,10 @@
 
 <script>
 // For test built file
-// import VueSlideBar from '../dist/vue-slide-bar.min.js'
+// import VueSlideBar from '../lib/vue-slide-bar.min.js'
 
 // For test local
-import VueSlideBar from './components/VueSlideBar'
+import VueSlideBar from '../src/index'
 
 export default {
   name: 'App',

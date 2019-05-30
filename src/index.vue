@@ -5,25 +5,56 @@
     class="vue-slide-bar-component vue-slide-bar-horizontal"
     :style="calculateHeight"
     @click="wrapClick">
-    <div ref="elem" class="vue-slide-bar" :style="{height: `${lineHeight}px`}">
+    <div
+      ref="elem"
+      class="vue-slide-bar"
+      :style="{
+        height: `${lineHeight}px`
+      }"
+    >
       <template>
-        <div ref="tooltip"
+        <div
+          ref="tooltip"
           class="vue-slide-bar-always vue-slide-bar-tooltip-container"
           :style="{'width': `${iconWidth}px`}"
           @mousedown="moveStart"
-          @touchstart="moveStart">
-          <span class="vue-slide-bar-tooltip-top vue-slide-bar-tooltip-wrap" v-if="showTooltip">
+          @touchstart="moveStart"
+        >
+          <span
+            v-if="showTooltip"
+            class="vue-slide-bar-tooltip-top vue-slide-bar-tooltip-wrap"
+          >
             <slot name="tooltip">
-              <span class="vue-slide-bar-tooltip" :style="tooltipStyles">{{ val }}</span>
+              <span
+                :style="tooltipStyles"
+                class="vue-slide-bar-tooltip"
+              >
+                {{ val }}
+              </span>
             </slot>
           </span>
         </div>
       </template>
-      <div ref="process" class="vue-slide-bar-process" :style="processStyle"></div>
+      <div
+        ref="process"
+        :style="processStyle"
+        class="vue-slide-bar-process"
+      />
     </div>
-    <div v-if="range" class="vue-slide-bar-range">
-      <div v-for="(r, index) in range" :key="index" class="vue-slide-bar-separate" :style="dataLabelStyles">
-        <span v-if="!r.isHide" class="vue-slide-bar-separate-text">
+    <div
+      v-if="range"
+      class="vue-slide-bar-range"
+    >
+      <div
+        v-for="(r, index) in range"
+        :key="index"
+        class="vue-slide-bar-separate"
+        :style="dataLabelStyles"
+      >
+        <span
+          v-if="!r.isHide"
+          class="vue-slide-bar-separate-text"
+        >
           {{ r.label }}
         </span>
       </div>
@@ -32,7 +63,7 @@
 </template>
 <script>
 export default {
-  name: 'VueSlideBar',
+  name: 'vue-slide-bar',
   data () {
     return {
       flag: false,
